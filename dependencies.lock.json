@@ -1,0 +1,17 @@
+{
+  "plugin": {
+    "version": "4.10.0",
+    "repository": "https://github.com/dingminhua/dsh-connect-workbuddy",
+    "sourceArchiveSha256": "265c6adb89736785a4a63eae9f664946d3f2b843262a6ecf1aa315aa93c3cd7c",
+    "commit": "f111db7e2e046a85ddf922398645a86f37022155"
+  },
+  "helper": {
+    "commit": "a82c9c8f17acd9ed69738935fbd8b1ff6e73c7d6",
+    "version": "1.0.8",
+    "windowsAmd64Sha256": "82491f77f17bc13c0c9f638d6415c3a4b5cc78f77a10760469f5e56d92f11bf5",
+    "repository": "https://github.com/autumnsentiment/workbuddy-helper",
+    "releaseAssetUrl": "https://github.com/autumnsentiment/workbuddy-helper/releases/download/v1.0.8/WorkBuddyHelper-windows-amd64.exe",
+    "sourceArchiveSha256": "e8415ac4c2f7bcd118c843273e3667c7178ec60dc15950848dfe3a84fcafdd36"
+  },
+  "schemaVersion": 1
+}

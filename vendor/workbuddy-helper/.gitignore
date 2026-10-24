@@ -1,0 +1,32 @@
+# 构建产物（仅匹配仓库根目录，勿用裸文件名以免误伤 cmd/workbuddy-helper/）
+/dist/
+/outputs/
+/*.exe
+/*.test
+/workbuddy-helper
+/workbuddy-helper-linux
+/workbuddy-helper.exe
+
+# 运行数据目录（含加密凭据，切勿提交）
+/data/
+/test-data/
+/smoke-data/
+/single-data/
+/*.bin
+key.bin
+state.bin
+state.bin.bak
+state.bin.tmp
+proxy.conf
+proxy.conf.bak
+proxy.conf.tmp
+dns.conf
+dns.conf.bak
+dns.conf.tmp
+instance.lock
+
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

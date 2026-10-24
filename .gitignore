@@ -1,0 +1,16 @@
+# Credentials and machine-local state must never be committed.
+state*.bin
+key.bin
+*.log
+.env
+.env.*
+!*.example
+node_modules/
+runtime/
+backups/
+workbuddy-vault/
+cordis.patch.local.yml
+*.lnk
+*.tmp
+*.zip
+__pycache__/
