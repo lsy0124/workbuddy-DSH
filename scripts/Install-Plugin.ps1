@@ -13,8 +13,15 @@ if (!(Test-Path -LiteralPath (Join-Path $shims 'pnpm.cmd'))) { throw 'Open DSH D
 $oldNode=$env:ELECTRON_RUN_AS_NODE; $oldHome=$env:DSH_HOME; $oldPath=$env:PATH
 try {
     $env:ELECTRON_RUN_AS_NODE='1'; $env:DSH_HOME=$DshHome; $env:PATH=$shims+';'+$env:PATH
-    & $exe $wrapper $entry plugin --profile web add ('dsh-connect-workbuddy@'+$Version)
-    if ($LASTEXITCODE -ne 0) { throw 'Plugin installation failed.' }
+    $logDirectory=Join-Path $env:LOCALAPPDATA 'WorkBuddyDSH\install-logs'
+    New-Item -ItemType Directory -Path $logDirectory -Force | Out-Null
+    $stamp=Get-Date -Format yyyyMMdd-HHmmss
+    $stdout=Join-Path $logDirectory ($stamp+'.stdout.log')
+    $stderr=Join-Path $logDirectory ($stamp+'.stderr.log')
+    $arguments='"'+$wrapper+'" "'+$entry+'" plugin --profile web add dsh-connect-workbuddy@'+$Version
+    # Electron is a GUI executable: explicitly wait for its Node-mode CLI.
+    $process=Start-Process -FilePath $exe -ArgumentList $arguments -WindowStyle Hidden -Wait -PassThru -RedirectStandardOutput $stdout -RedirectStandardError $stderr
+    if ($process.ExitCode -ne 0) { throw ('Plugin installation failed. Inspect local logs under '+$logDirectory) }
     $package=Get-Content -LiteralPath (Join-Path $DshHome 'profiles\web\node_modules\dsh-connect-workbuddy\package.json') -Raw | ConvertFrom-Json
     if ($package.version -ne $Version) { throw 'Installed version differs from the requested version.' }
     Write-Host ('Installed Desktop web profile plugin '+$package.version+'. Restart DSH Desktop, then verify a real minimal request.')
